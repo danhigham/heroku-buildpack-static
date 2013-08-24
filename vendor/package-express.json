@@ -22,7 +22,6 @@
   },
   "main": "server.coffee",
   "dependencies": {
-    // "stream-cache" : "latest",
     "coffee-script" : "latest",
     "express"       : "latest"
   },
