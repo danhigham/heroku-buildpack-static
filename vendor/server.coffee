@@ -16,11 +16,11 @@ generateFileCache = (file) ->
     srcgz = data_raw.pipe(zlib.createGzip())
     srcgz.once 'end', ->
       data = if gzipped = data_gzipped.getLength() < 0.85*data_raw.getLength() then data_gzipped else data_raw
-      etag = data.hash()
+      # etag = data.hash()
       fileCache[path.join('/', path.relative _STATIC_DIR, file).split('index.html')[0].split('index.htm')[0]] =
         data: data
         gzipped: gzipped
-        etag: etag
+        # etag: etag
       fbp--
       process.nextTick createServer if ccs and fbp == 0
     srcgz.pipe data_gzipped
@@ -73,7 +73,7 @@ createServer = ->
         'Transfer-Encoding'           : 'chunked'
         'Vary'                        : 'Accept-Encoding'
         'Connection'                  : 'Keep-Alive'
-        'ETag'                        : cache.etag
+        # 'ETag'                        : cache.etag
         'cache-control'               : ((type) ->
           if /(text\/(cache-manifest|html|htm|xml)|application\/(xml|json))/.test type
               cc = 'public,max-age=0';
@@ -104,7 +104,7 @@ createServer = ->
         'content-encoding'            : 'gzip'
         'Transfer-Encoding'           : 'chunked'
         'Vary'                        : 'Accept-Encoding'
-        'ETag'                        : cache.etag
+        # 'ETag'                        : cache.etag
 
     try
       cache.data.pipe res
