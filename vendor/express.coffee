@@ -4,7 +4,7 @@ path          = require 'path'
 http          = require 'http'
 zlib          = require 'zlib'
 express       = require 'express'
-StreamCache   = require 'StreamCache'
+StreamCache   = require 'stream-cache'
 
 files_cached = 0
 generateFileCache = (file) ->

@@ -3,7 +3,7 @@ url           = require 'url'
 path          = require 'path'
 http          = require 'http'
 zlib          = require 'zlib'
-StreamCache   = require 'StreamCache'
+StreamCache   = require 'stream-cache'
 
 files_cached = 0
 generateFileCache = (file) ->
